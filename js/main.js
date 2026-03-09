@@ -2,8 +2,8 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiamFuZHJlLXBybyIsImEiOiJjbWxmaTFsOTIwMjY5M2Vva
 const map = new mapboxgl.Map({
   container: 'map', // weird different way to call div
   style: 'mapbox://styles/jandre-pro/cmlwyuil3000401sm8dnye6eg', // My tile URL
-  center: [-98.5795, 39.8283], // centered [lng, lat]
-  zoom: 3.5 // zoom for lower 48 US
+  center: [-95.5795, 39.8283], // centered [lng, lat]
+  zoom: 3.3 // zoom for lower 48 US
 });
 
 let plants = [];//new
