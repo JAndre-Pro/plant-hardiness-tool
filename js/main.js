@@ -1,6 +1,6 @@
 mapboxgl.accessToken = 'pk.eyJ1IjoiamFuZHJlLXBybyIsImEiOiJjbWxmaTFsOTIwMjY5M2VvaWIzbWgyb3F2In0.6E3iTTICdzYRJcjiQGGCMQ';
 const map = new mapboxgl.Map({
-  container: 'map', // weird different way to call div
+  container: 'map',
   style: 'mapbox://styles/jandre-pro/cmlwyuil3000401sm8dnye6eg', // My tile URL
   center: [-95.5795, 39.8283], // centered [lng, lat]
   zoom: 3.3 // zoom for lower 48 US
@@ -155,29 +155,9 @@ document.getElementById('plantSearchBtn').addEventListener('click', function() {
     // Highlight the zone on the map
     map.setFilter('zones-highlight', ['==','zone', zone]);
 
-    // Optionally, show all plants in that zone in the sidebar
-    // const matches = plants.filter(p => p.min_temp === minTemp);
-    // const list = matches.map(p => `<li>${p.common_name} (${p.scientific_name})</li>`).join('');
-    // document.getElementById('plantResults').innerHTML = list;
-
 });
 
-// document.getElementById('plantSearch').addEventListener('keyup', function(){
 
-//     const search = this.value.toLowerCase();
-
-//     const plant = plants.find(p =>
-//         p.common_name.toLowerCase().includes(search) ||
-//         p.scientific_name.toLowerCase().includes(search)
-//     );
-
-//     if(!plant) return;
-
-//     const range = plant.min_temp;
-
-//     map.setFilter('zones-highlight', ['==','zone', range]);
-
-// });
 
 
 ///DROPDOWN
@@ -208,18 +188,3 @@ document.getElementById('zoneSelect').addEventListener('change', function(){
     document.getElementById('plantResults').innerHTML = list;
 
 });
-// document.getElementById('zoneSelect').addEventListener('change', function(){
-
-//     const range = this.value;
-
-//     map.setFilter('zones-highlight', ['==','zone', range]);
-
-//     const matches = plants.filter(p => p.min_temp === range);
-
-//     const list = matches
-//         .map(p => "<li>"+p.common_name+"</li>")
-//         .join("");
-
-//     document.getElementById('plantResults').innerHTML = list;
-
-// });
