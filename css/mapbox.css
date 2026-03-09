@@ -1,0 +1,92 @@
+
+body { margin: 0; padding: 0; } /*Removes browser margins*/
+#map { position: absolute; top: 0; bottom: 0; width: 100%; } /*fits map to full screen*/
+
+#title { /* title style for map*/
+    position: absolute; /*places higher than map*/
+    top: 10px; /*margin*/
+    left: 50%; /*center*/
+    transform: translateX(-50%); /* Correct horizontal centering */ 
+    background: white;
+    padding: 1px 10px;
+    border-radius: 8px;
+    font-family: Arial, sans-serif;
+    z-index: 1; /*weight to keep at top*/
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+#sidebar{
+    position:absolute;
+    left:0;
+    top:0;
+    width:300px;
+    height:100%;
+    background:white;
+    padding:15px;
+    overflow:auto;
+    z-index:1;
+}
+#plantResults {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#legend {
+    position: absolute;
+    bottom: 30px;
+    left: 10px;
+    background: rgb(0, 0, 0);
+    padding: 15px;
+    border-radius: 8px;
+    font-family: Arial, sans-serif;
+    z-index: 1;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    font-size: 14px;
+    color: white;
+/* split into 2 columns */
+    column-count: 2;       
+    column-gap: 20px;
+}
+/*legend rows*/
+#legend div {
+    display: flex; /*align text and patch*/
+    align-items: center;
+    margin-bottom: 5px; 
+}
+/*item patches*/
+#legend span {
+    display: inline-block;
+    width: 20px; /*patch width*/
+    height: 20px; /*patch height*/
+    margin-right: 8px;
+}    
+/*OSU logo*/
+#corner-image1 {
+    position: absolute;       
+    bottom: 60px;  /* margin */
+    right: 2px;   /* margin */
+    z-index: 2;               
+}
+
+#corner-image1 img {
+    width: 50px;  /* size */
+    height: auto; /* keep aspect ratio */
+    border-radius: 4px;       
+    /* box-shadow: 0 1px 4px rgba(0,0,0,0.4); optional shadow */
+}
+
+#corner-image2 {
+    position: absolute;       
+    bottom: 19px;             
+    right: 2px;               
+    z-index: 2;               
+}
+
+#corner-image2 img {
+    width: 300px;             
+    height: auto;
+    background: white;           
+    /* border-radius: 4px;        */
+    /* box-shadow: 0 1px 4px rgba(0,0,0,0.4);*/
+}
