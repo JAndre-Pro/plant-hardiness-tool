@@ -1,22 +1,40 @@
+
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Plant Hardiness Tool</title>
+
+    <!-- Page title shown in browser tab -->
+    <title>Hardy Gardener Tool</title>
+
+    <!-- Ensures proper scaling on mobile devices -->
     <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+
+    <!-- Mapbox GL CSS -->
     <link href="https://api.mapbox.com/mapbox-gl-js/v3.18.1/mapbox-gl.css" rel="stylesheet">
+
     <link rel="stylesheet" href="css/mapbox.css">
 </head>
+
 <body>
 
-    <div id="map">    </div>
-    <div id="title">
-        <h1>Plant Zone Finder</h1>
-    </div>
+    <!-- Main map container (holds map + title overlay) -->
+    <div id="map-pane">
 
+        <!-- Mapbox map renders here -->
+        <div id="map"></div>
+
+        <!-- Title panel centered over the map -->
+        <div id="title">
+            <h1>Hardy Gardener</h1>
+        </div>
+    </div> 
+
+    <!-- Legend showing hardiness zone colors -->
     <div id="legend">
-        <!-- <h3>Zones</h3> -->
-       
+        <div class="legend-title">Hardiness Zones</div>
+
+        <!-- Each row: color patch + zone label -->
         <div><span style="background:#03c2f1"></span> 3a</div>
         <div><span style="background:#025a68"></span> 3b</div>
         <div><span style="background:#0681f3"></span> 4a</div>
@@ -36,44 +54,99 @@
         <div><span style="background:#E31A1C"></span> 11a</div>
         <div><span style="background:#BD0026"></span> 12a</div>
     </div>
+
+    <!-- Sidebar for search, dropdown, and results -->
     <div id="sidebar">
 
+        <!-- Plant search input + button -->
         <input id="plantSearch" type="text" placeholder="Search plant...">
         <button id="plantSearchBtn">Search</button>
 
+        <!-- Hardiness zone dropdown -->
         <select id="zoneSelect">
-        <option value="">Select Zone</option>
-        <option value="3a">3a</option>
-        <option value="3b">3b</option>
-        <option value="4a">4a</option>
-        <option value="4b">4b</option>
-        <option value="5a">5a</option>
-        <option value="5b">5b</option>
-        <option value="6a">6a</option>
-        <option value="6b">6b</option>
-        <option value="7a">7a</option>
-        <option value="7b">7b</option>
-        <option value="8a">8a</option>
-        <option value="8b">8b</option>
-        <option value="9a">9a</option>
-        <option value="9b">9b</option>
-        <option value="10a">10a</option>
-        <option value="10b">10b</option>
-        <option value="11a">11a</option>
-        <option value="12a">12a</option>
+            <option value="">Select Zone</option>
+            <option value="3a">3a</option>
+            <option value="3b">3b</option>
+            <option value="4a">4a</option>
+            <option value="4b">4b</option>
+            <option value="5a">5a</option>
+            <option value="5b">5b</option>
+            <option value="6a">6a</option>
+            <option value="6b">6b</option>
+            <option value="7a">7a</option>
+            <option value="7b">7b</option>
+            <option value="8a">8a</option>
+            <option value="8b">8b</option>
+            <option value="9a">9a</option>
+            <option value="9b">9b</option>
+            <option value="10a">10a</option>
+            <option value="10b">10b</option>
+            <option value="11a">11a</option>
+            <option value="12a">12a</option>
         </select>
-
+        <!-- Temperature Range appears here -->
+        <p id="trangeWrapper" style="color:white; margin-top:10px;">
+            <strong>Temperature Range:</strong>
+            <span id="trangeDisplay"></span>
+        </p>
+        <!-- Search results appear here -->
         <ul id="plantResults"></ul>
 
-</div>
-<!-- These images are needed for proper Pland Hardiness Zone attribution per https://prism.oregonstate.edu/phzm/-->
+    </div>
+
+    <!-- Instructions modal shown on page load -->
+    <div id="instructions-panel">
+        <div class="panel-content">
+
+            <!-- Close button for instructions modal -->
+            <button id="close-instructions">×</button>
+
+            <h1>How to Use This Map</h1>
+
+            <!-- Instructions-->
+            <p>• Zoom and pan to explore the map.</p>
+            <p>• Click on a region to view plant hardiness data.</p>
+            <p>• Type a plant in the seach box and click search.</p>
+
+            <!-- example searches -->
+            <p style="margin-left: 10px;"><strong>Please search the following:</strong></p>
+            <p style="margin-left: 20px;">Weeping lovegrass</p>
+            <p style="margin-left: 20px;">Oceanspray</p>
+            <p style="margin-left: 20px;">Sugarberry</p>
+
+            <p>• Select a zone from the drop down to highlight</p>
+            <p style="margin-left: 10px;">zone on map and see plants. (some zones blank)</p>
+
+            <p><strong>• Refresh page to see these instructions again.</strong></p>
+
+            <h3>Note:</h3>
+            <p>This tool is a demo, not a finished product.</p>
+            <p>The plant data is not accurate but has been used to show functionality.</p>
+        </div>
+    </div>
+
+    <!-- These images are needed for proper Pland Hardiness Zone attribution per https://prism.oregonstate.edu/phzm/-->
     <div id="corner-image1">
         <img src="img/oregonstate_logo.png" alt="OSU logo">
     </div>
+
     <div id="corner-image2">
         <img src="img/usda-ars_logo.png" alt="USDA-ARS logo">
     </div>
+
 </body>
+
+<!-- Mapbox GL JS -->
 <script src="https://api.mapbox.com/mapbox-gl-js/v3.18.1/mapbox-gl.js"></script>
+
+
 <script src="js/main.js" defer></script>
+
+<!-- Close instructions when X is clicked -->
+<script>
+    document.getElementById("close-instructions").addEventListener("click", function() {
+        document.getElementById("instructions-panel").style.display = "none";
+    });
+</script>
+
 </html>

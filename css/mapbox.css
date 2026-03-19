@@ -1,35 +1,69 @@
-
+/****************************************************
+                        MAP
+*****************************************************/
 body { margin: 0; padding: 0; } /*Removes browser margins*/
-#map { position: absolute; top: 0; bottom: 0; left: 330px ;right: 0; } /*fits map to full screen*/
-
-#title { /* title style for map*/
-    position: absolute; /*places higher than map*/
-    top: 5px; /*margin*/
-    right: 25%; /*center*/
-    height: 7%;
-    /* transform: translateX(-75%); Correct horizontal centering  */
-    background: black;
-    color: white;
-    padding: 5px 20px;
-    border-radius: 6px;
-    text-align: center;
-    font-family: Arial, sans-serif;
-    z-index: 1; /*weight to keep at top*/
-    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-    line-height: 0;
+#map-pane {
+    position: absolute;
+    top: 0;
+    left: 330px;
+    right: 0;
+    bottom: 0;
 }
 
+#map { position: absolute; top: 0; bottom: 0; left: 0 ;right: 0; } /*fits map to full screen*/
+
+/****************************************************
+                    TITLE BOX
+*****************************************************/
+
+#title {
+    position: absolute;
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    background: rgba(0, 0, 0, 0.65); 
+    color: white;
+    padding: 12px 28px;               
+    border-radius: 10px;              
+    backdrop-filter: blur(6px);      
+    
+    
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 28px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-align: center;
+
+   
+    z-index: 10;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+
+    
+    line-height: normal;
+}
+
+#title h1 {
+    margin: 0;
+    padding: 0;
+    font-size: inherit;
+    font-weight: inherit;
+}
+
+
+/****************************************************
+                    SEARCH PANEL
+*****************************************************/
 #sidebar{
     position:absolute;
     left:0;
     top:0;
     width:300px;
-    height:88%;
+    bottom:42px;
     background:black;
     padding:15px;
     overflow:auto;
     z-index:1;
-    
 }
 #plantResults {
     list-style: none;
@@ -38,6 +72,11 @@ body { margin: 0; padding: 0; } /*Removes browser margins*/
     color: white;
     font-size: 13px
 }
+
+
+/****************************************************
+                    LEGEND
+*****************************************************/
 
 #legend {
     position: absolute;
@@ -51,23 +90,75 @@ body { margin: 0; padding: 0; } /*Removes browser margins*/
     box-shadow: 0 2px 6px rgba(0,0,0,0.3);
     font-size: 12px;
     color: white;
-/* split into 2 columns */
+/* split into 3 columns */
     column-count: 3;       
     column-gap: 20px;
 }
+ #legend .legend-title {
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 10px;
+    text-align: center;
+    column-span: all;   /* <-- This makes the title span all columns */
+} 
 /*legend rows*/
-#legend div {
+ #legend div {
     display: flex; /*align text and patch*/
     align-items: center;
     margin-bottom: 5px; 
-}
+} 
 /*item patches*/
-#legend span {
+ #legend span {
     display: inline-block;
     width: 15px; /*patch width*/
     height: 15px; /*patch height*/
     margin-right: 8px;
-}    
+}   
+
+
+/******************************************************
+                SCREEN SIZE LEGEND SCALING
+********************************************************/
+
+/*small laptop like mine*/
+ @media screen and (max-width: 1400px) {
+    #legend {
+        font-size: 12px;
+        padding: 12px;
+        column-count: 3;
+    }
+
+    #legend .legend-title {
+        font-size: 14px;
+    }
+
+    #legend span {
+        width: 12px;
+        height: 12px;
+    }
+} 
+/* large laptop to desktop monitor*/
+@media screen and (min-width: 1401px) {
+    #legend {
+        font-size: 20px;
+        padding: 24px;
+        column-count: 3;
+    }
+
+    #legend .legend-title {
+        font-size: 24px;
+    }
+
+    #legend span {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+
+/********************************************************
+                        ATTRIBUTION
+*********************************************************/
 /*OSU logo*/
 #corner-image1 {
     position: absolute;       
@@ -82,7 +173,7 @@ body { margin: 0; padding: 0; } /*Removes browser margins*/
     border-radius: 4px;       
     /* box-shadow: 0 1px 4px rgba(0,0,0,0.4); optional shadow */
 }
-
+/*USDA Logo*/
 #corner-image2 {
     position: absolute;       
     bottom: 0px;             
@@ -94,6 +185,60 @@ body { margin: 0; padding: 0; } /*Removes browser margins*/
     width: 275px;             
     height: auto;
     background: white;           
-    /* border-radius: 4px;        */
-    /* box-shadow: 0 1px 4px rgba(0,0,0,0.4);*/
+}
+/*********************************************************
+INSTRUCTIONS FOR THE MAP
+*********************************************************/
+#instructions-panel {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.55); /* dim background */
+    backdrop-filter: blur(3px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; /* above everything */
+}
+
+#instructions-panel .panel-content {
+    background: #ffffff;
+    color: #222;
+    width: 350px;
+    padding: 25px 30px;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+    position: relative;
+    font-family: "Segoe UI", Arial, sans-serif;
+    text-align: left;
+}
+
+#instructions-panel h2 {
+    margin-top: 0;
+    margin-bottom: 12px;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+#instructions-panel p {
+    margin: 6px 0;
+    font-size: 14px;
+}
+
+#close-instructions {
+    position: absolute;
+    top: 8px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 22px;
+    cursor: pointer;
+    color: #444;
+    font-weight: bold;
+}
+
+#close-instructions:hover {
+    color: #000;
 }
